@@ -1,0 +1,12 @@
+{
+  "name": "2REP Standalone · Diarios de Sesiones de la Segunda República",
+  "short_name": "2REP",
+  "lang": "es",
+  "dir": "ltr",
+  "description": "Explorador de los Diarios de Sesiones de la Segunda República Española con el CSV publicado en Harvard Dataverse (doi:10.7910/DVN/THQCMI), que se abre en el navegador y no se sube a ningún servidor.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f7f6f3",
+  "theme_color": "#4a4fa8"
+}
