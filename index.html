@@ -5413,7 +5413,7 @@ $Id: LICENSE 2133 2007-11-28 02:46:28Z lechimp $</pre></details>
   function aplicarTema() {
     let t = null;
     try { t = g.localStorage.getItem('tema'); } catch (e) { t = null; }
-    if (t !== 'dark' && t !== 'light') t = g.matchMedia && g.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    if (t !== 'dark') t = 'light';
     doc.documentElement.dataset.theme = t;
   }
 
@@ -7911,10 +7911,10 @@ async function boot() {
 
 
 
+
   let temaGuardado = null;
   try { temaGuardado = localStorage.getItem('tema'); } catch { temaGuardado = null; }
-  document.documentElement.dataset.theme =
-    temaGuardado || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  document.documentElement.dataset.theme = temaGuardado === 'dark' ? 'dark' : 'light';
 
 
 
