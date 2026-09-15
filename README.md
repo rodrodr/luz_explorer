@@ -26,9 +26,9 @@ Navegador de escritorio actual: Chrome o Edge 103 o posterior, Firefox 115 o pos
 
 Los datos que explora esta web son los del conjunto publicado en Harvard Dataverse. Cítelo siempre:
 
-> Rodrigues-Silveira, Rodrigo; García-Díez, Fátima; Llamazares, Iván; Martínez-Barahona, Elena; Barreto Martín, Eduardo, 2026, "Luz y Taquígrafos: Parliamentary Debates in the Second Spanish Republic, 1931–1945", https://doi.org/10.7910/DVN/THQCMI, Harvard Dataverse, V1
+> Rodrigues-Silveira, Rodrigo; García-Díez, Fátima; Llamazares, Iván; Martínez-Barahona, Elena; Barreto Martín, Eduardo, 2026, "Luz y Taquígrafos: Parliamentary Debates in the Second Spanish Republic, 1931–1945", https://doi.org/10.7910/DVN/THQCMI, Harvard Dataverse, V2
 
-Más detalles en [CITA.md](CITA.md).
+La web reconoce también la V1, la versión anterior del CSV: al cargarla corrige las fechas de 7 sesiones, así que el corpus es el mismo que con la V2. Más detalles en [CITA.md](CITA.md).
 
 ## Contenido del repositorio
 

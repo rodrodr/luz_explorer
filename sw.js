@@ -11,8 +11,8 @@
  *   - activate borra las cachés y las copias de otras versiones.
  */
 'use strict';
-const VERSION = '20d3a02d78a9622fc3da688d70d0519376c4d10f141c5b3dbd03bf00f694472f';   // sha256 de index.html
-const BUILD_ID = '6d237ec69bbbe99b';
+const VERSION = 'a861832f236a3b059ed7b46b4707379ebd4d50c2456db571d7a48b2af1a95f43';   // sha256 de index.html
+const BUILD_ID = '413ae742d295b01a';
 const CACHE = '2rep-web-' + VERSION.slice(0, 16);
 const IDB = '2rep-web-sw';
 const hex = (buf) => Array.from(new Uint8Array(buf), (b) => b.toString(16).padStart(2, '0')).join('');
