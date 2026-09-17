@@ -10792,10 +10792,17 @@ function sessMetrica(body) {
 
 
 const CAPITAL_SIGNOS = '«"“\'‘¿¡';
+
+
+const CAPITAL_MIN_INTERVENCION = 100, CAPITAL_MIN_PARRAFO = 50;
+
+
+const PALABRA_RE = new RegExp(String.raw`\p{L}[\p{L}\p{N}\u0027\u2019.-]*`, 'gu');
+const contarPalabras = el => (el.textContent.match(PALABRA_RE) || []).length;
 function marcarCapital(raiz) {
-  if (!raiz) return;
+  if (!raiz || contarPalabras(raiz) <= CAPITAL_MIN_INTERVENCION) return;
   for (const p of raiz.querySelectorAll('.fp.first')) {
-    if (p.querySelector(':scope > .r2-capital')) continue;
+    if (p.querySelector(':scope > .r2-capital') || contarPalabras(p) <= CAPITAL_MIN_PARRAFO) continue;
     const w = document.createTreeWalker(p, NodeFilter.SHOW_ELEMENT | NodeFilter.SHOW_TEXT, {
       acceptNode: n => (n.nodeType === 1 && n.classList.contains('fp-anchor') ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT),
     });
