@@ -1,12 +1,12 @@
 {
-  "name": "2REP Standalone · Diarios de Sesiones de la Segunda República",
-  "short_name": "2REP",
+  "name": "Luz y Taquígrafos · Explorador de los Diarios de Sesiones",
+  "short_name": "Luz y Taquígrafos",
   "lang": "es",
   "dir": "ltr",
-  "description": "Explorador de los Diarios de Sesiones de la Segunda República Española con el CSV publicado en Harvard Dataverse (doi:10.7910/DVN/THQCMI), que se abre en el navegador y no se sube a ningún servidor.",
+  "description": "Explorador de los Diarios de Sesiones de la Segunda República Española (1931–1945), con el corpus «Luz y Taquígrafos» de Harvard Dataverse (doi:10.7910/DVN/THQCMI). Se abre en el navegador con el corpus ya incluido; nada se sube a ningún servidor.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "background_color": "#f7f6f3",
-  "theme_color": "#4a4fa8"
+  "theme_color": "#6a1a24"
 }

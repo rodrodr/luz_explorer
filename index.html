@@ -1,12 +1,12 @@
 <!doctype html>
-<html lang="es" data-theme="light">
+<html lang="es" data-theme="light" data-estilo="editorial">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="data:,">
 <link rel="manifest" href="manifest.webmanifest">
-<meta name="theme-color" content="#4a4fa8">
-<title>2REP Standalone · Explorador de Diarios de Sesiones</title>
+<meta name="theme-color" content="#6a1a24">
+<title>Luz y Taquígrafos · Explorador de los Diarios de Sesiones</title>
 <script>
 
 
@@ -1316,6 +1316,346 @@ html:not(.r2-app) body { overflow: hidden; }
 .r2c[data-seccion="espera"] .r2c-cab { opacity: .55; }
 </style>
 <style>
+
+
+
+
+
+
+.brand { align-items: center; gap: 10px; }
+.brand h1 {
+  font-family: var(--folio-display); font-size: 21px; font-weight: 400; letter-spacing: .01em; line-height: 1;
+  color: var(--text);
+}
+.brand .sub { font-size: 11px; line-height: 1.3; white-space: normal; max-width: 34ch; }
+@media (max-width: 1100px) { .brand .sub { max-width: 22ch; } }
+
+
+.r2c-marca { align-items: center; gap: 10px; }
+.r2c-titulo { font-family: var(--folio-display); font-size: 21px; font-weight: 400; letter-spacing: .01em; line-height: 1; }
+.r2c-insignia { font: 500 11px/1.4 var(--sans); letter-spacing: 0; text-transform: none; }
+
+
+#dlgAjustes { max-width: 440px; }
+#dlgAjustes fieldset { border: 0; padding: 0; margin: 0 0 14px; min-width: 0; }
+#dlgAjustes fieldset:last-child { margin-bottom: 0; }
+#dlgAjustes legend { font-size: 12px; font-weight: 650; letter-spacing: .04em; text-transform: uppercase; color: var(--text-soft); padding: 0; margin-bottom: 6px; }
+#dlgAjustes .opciones { display: grid; gap: 6px; }
+#dlgAjustes .chk { padding: 7px 10px; border: 1px solid var(--border-soft); border-radius: 7px; background: var(--bg-sunken); }
+#dlgAjustes .chk:has(input:checked) { border-color: var(--accent); background: var(--accent-soft); }
+#dlgAjustes .chk .lbl { white-space: normal; }
+#dlgAjustes .chk .lbl small { display: block; font-size: 11.5px; color: var(--text-soft); margin-top: 1px; }
+</style>
+<style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+:root[data-estilo="editorial"] {
+  --accent:       #6a1a24;
+  --accent-hover: #7d2330;
+  --accent-soft:  #f5e9ea;
+  --accent-text:  #6a1a24;
+  --bg-active:    #f1e3e4;
+
+
+  --danger:       #c21d1d;
+
+
+
+  --acot-cf-ink: #963c16; --acot-cf-rule: #bb7349; --acot-cf-bg: rgba(150,60,22,.07);
+
+
+  --ideo-EI: #a3261d;
+
+
+
+
+
+  --r2-capital:  #6a1a24;
+  --r2-ancla:    #8c8274;
+  --r2-reticula: rgba(40,30,15,.028);
+
+
+  --r2-meta:     #6b655b;
+}
+
+:root[data-estilo="editorial"][data-theme="dark"] {
+  --accent:       #e89aa5;
+  --accent-hover: #eeaab4;
+  --accent-soft:  #3a2328;
+  --accent-text:  #f0b3bc;
+  --bg-active:    #3b262a;
+
+  --danger:       #ff6b5b;
+
+  --acot-cf-ink: #eda47a; --acot-cf-rule: #a8633c; --acot-cf-bg: rgba(237,164,122,.10);
+
+
+
+  --ideo-EI: #b04a40;
+
+  --r2-capital:  #e89aa5;
+  --r2-ancla:    var(--folio-anchor);
+  --r2-reticula: rgba(255,255,255,.016);
+  --r2-meta:     var(--folio-ash);
+}
+
+
+:root[data-estilo="editorial"] .btn.primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); filter: none; }
+
+
+
+:root[data-estilo="editorial"] #hits .hit.sel .hit-date { color: var(--text-soft); }
+
+
+:root[data-estilo="editorial"] .pill button { opacity: .8; }
+
+
+
+
+:root[data-estilo="editorial"] .spec-bar:has(.spec-seg:focus-visible) { overflow: visible; }
+:root[data-estilo="editorial"] .spec-seg:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; box-shadow: none; position: relative; z-index: 1; }
+
+
+:root[data-estilo="editorial"] ::selection { background: var(--accent); color: #fff; }
+:root[data-estilo="editorial"][data-theme="dark"] ::selection { color: #17171a; }
+</style>
+<style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+:root[data-estilo="editorial"] .folio {
+  --r2-margen: 86px;
+  --r2-cuerpo: clamp(19px, calc(15.5px + .55cqi), 21px);
+  max-width: min(820px, calc(100% - 28px));
+  padding: 34px clamp(24px, 4.5cqi, 48px) 56px var(--r2-margen);
+  background-color: var(--folio-paper);
+
+  background-image:
+    linear-gradient(to right, var(--r2-reticula) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--r2-reticula) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+:root[data-estilo="editorial"] .folio.sess { max-width: min(880px, calc(100% - 28px)); }
+
+
+
+
+
+:root[data-estilo="editorial"] .folio:not(.sess) { display: flex; flex-direction: column; }
+:root[data-estilo="editorial"] .folio:not(.sess) > * { order: 5; }
+:root[data-estilo="editorial"] .folio:not(.sess) > .folio-title { order: 0; }
+:root[data-estilo="editorial"] .folio:not(.sess) > .folio-rep { order: 1; }
+:root[data-estilo="editorial"] .folio:not(.sess) > :is(.folio-kicker, :root[data-estilo="editorial"] .folio-gov) { order: 2; }
+:root[data-estilo="editorial"] .folio:not(.sess) > .folio-tags { order: 3; }
+:root[data-estilo="editorial"] .folio:not(.sess) > .folio-rule { order: 4; }
+
+:root[data-estilo="editorial"] .folio-title {
+  margin: 0 0 10px; text-align: left;
+  font-family: var(--folio-text); font-weight: 600; font-size: clamp(28px, calc(8px + 3.6cqi), 46px);
+  line-height: 1.1; letter-spacing: -.012em; color: var(--folio-ink);
+  text-wrap: balance; -webkit-hyphens: manual; hyphens: manual;
+}
+
+
+
+
+
+:root[data-estilo="editorial"] .folio-kicker, :root[data-estilo="editorial"] .folio-rep, :root[data-estilo="editorial"] .folio-gov {
+  margin: 0; text-align: left;
+  font-family: var(--sans); font-size: 12px; font-weight: 500; line-height: 1.6;
+  letter-spacing: .01em; text-transform: none; color: var(--r2-meta);
+}
+:root[data-estilo="editorial"] .folio-kicker, :root[data-estilo="editorial"] .folio-rep { font-size: 14px; line-height: 1.45; letter-spacing: .075em; font-variant-caps: all-small-caps; }
+:root[data-estilo="editorial"] .folio-rep em { font-style: italic; font-variant-caps: normal; font-size: 12px; letter-spacing: .01em; }
+:root[data-estilo="editorial"] .r2-nowrap { white-space: nowrap; }
+
+
+:root[data-estilo="editorial"] .folio-tags { justify-content: flex-start; gap: 6px; margin: 18px 0 0; }
+:root[data-estilo="editorial"] .folio .tag {
+  display: inline-flex; align-items: center;
+  padding: 3px 9px; border-radius: 4px; font-size: 11.5px; font-weight: 600; line-height: 1.35; letter-spacing: .02em;
+  border: 1px solid color-mix(in srgb, currentColor 22%, transparent);
+}
+:root[data-estilo="editorial"] .folio .tag.words { font-size: 10.5px; font-weight: 500; letter-spacing: 0; }
+:root[data-estilo="editorial"] .folio .tag.ideo { border-color: color-mix(in srgb, var(--ic) 72%, #000); }
+
+
+:root[data-estilo="editorial"] .folio-rule { border-bottom: 1px solid var(--folio-rule); margin: 20px 0 18px; }
+:root[data-estilo="editorial"] .folio-body { margin-top: 8px; }
+
+
+:root[data-estilo="editorial"] .fp, :root[data-estilo="editorial"] .acta-turn { font-size: var(--r2-cuerpo); line-height: 1.78; }
+:root[data-estilo="editorial"] .acot { font-size: calc(var(--r2-cuerpo) * .86); }
+:root[data-estilo="editorial"] .acta-chronicle, :root[data-estilo="editorial"] .acta-table { font-size: calc(var(--r2-cuerpo) * .885); }
+:root[data-estilo="editorial"] .acta-note, :root[data-estilo="editorial"] .acta-note-inline { font-size: calc(var(--r2-cuerpo) * .8); }
+:root[data-estilo="editorial"] .acta-list { font-size: calc(var(--r2-cuerpo) * .83); }
+
+
+
+:root[data-estilo="editorial"] .folio .fp-anchor {
+  left: auto; right: calc(100% + .7em); top: 0;
+  font-family: var(--folio-text); font-size: 1em; font-weight: 700; font-style: normal; line-height: inherit;
+  letter-spacing: -.01em; font-variant-numeric: lining-nums tabular-nums; text-align: right;
+  color: var(--r2-ancla);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+:root[data-estilo="editorial"] .r2-capital { display: none; }
+:root[data-estilo="editorial"] .r2-capital::before { content: attr(data-signo); font-size: .6em; }
+:root[data-estilo="editorial"] .r2-capital::after { content: attr(data-letra); }
+:root[data-estilo="editorial"] :is(.folio:not(.sess):not(.careo-folio), :root[data-estilo="editorial"] .sess-block.sess-ref) .fp.r2-cap { display: flow-root; }
+:root[data-estilo="editorial"] :is(.folio:not(.sess):not(.careo-folio), :root[data-estilo="editorial"] .sess-block.sess-ref) .fp.r2-cap > .r2-capital {
+  display: block; float: left;
+  margin: -.113em .07em -.1em -.02em;
+  font-family: var(--folio-text); font-size: 6.48em; font-weight: 700; font-style: normal; line-height: 1;
+  letter-spacing: 0; text-indent: 0; color: var(--r2-capital);
+  -webkit-user-select: none; user-select: none;
+}
+:root[data-estilo="editorial"] :is(.folio:not(.sess):not(.careo-folio), :root[data-estilo="editorial"] .sess-block.sess-ref) .fp.r2-cap .r2-cap-texto { font-size: 0; }
+
+
+:root[data-estilo="editorial"] :is(.folio:not(.sess):not(.careo-folio), :root[data-estilo="editorial"] .sess-block.sess-ref) .fp.r2-cap > .r2-capital.en-mark {
+  color: var(--mark-text);
+  background: linear-gradient(to bottom, transparent 16%, var(--mark) 16%, var(--mark) 90%, transparent 90%);
+}
+
+
+
+:root[data-estilo="editorial"] .sess-banner { margin: 0 0 32px calc(22px - var(--r2-margen)); }
+:root[data-estilo="editorial"] .sess-block {
+  margin: 0 0 34px calc(-1 * var(--r2-margen)); padding: 0 0 18px var(--r2-margen);
+}
+:root[data-estilo="editorial"] .sess-block.sess-ref {
+  padding: 18px 26px 6px calc(var(--r2-margen) - 1.5px);
+  margin: 0 -27.5px 34px calc(-1 * var(--r2-margen));
+}
+
+
+:root[data-estilo="editorial"] .sess-head {
+  align-items: center; gap: 6px 8px;
+  padding-bottom: 14px; margin-bottom: 20px;
+}
+:root[data-estilo="editorial"] .sess-name {
+  order: 0; flex: 1 0 100%;
+  font-family: var(--folio-text); font-weight: 600; font-size: clamp(22px, calc(8px + 2.4cqi), 32px);
+  line-height: 1.15; letter-spacing: -.01em; color: var(--folio-ink);
+}
+:root[data-estilo="editorial"] .sess-name em { font-weight: 400; font-size: .74em; letter-spacing: 0; color: var(--r2-meta); white-space: nowrap; }
+:root[data-estilo="editorial"] .sess-sig {
+  order: 1; flex: 1 0 100%; margin: -3px 0 6px;
+  font: 500 14px/1.4 var(--sans); letter-spacing: .075em; font-variant-caps: all-small-caps; color: var(--r2-meta);
+}
+:root[data-estilo="editorial"] .sess-star { order: 2; }
+:root[data-estilo="editorial"] .sess-head > .btn[data-solo] { order: 3; }
+:root[data-estilo="editorial"] .sess-tags { order: 4; flex: 0 1 auto; margin: 0; gap: 6px; }
+
+
+:root[data-estilo="editorial"] .folio .btn[data-solo] {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 4px 11px 4px 9px; border-radius: 5px; font-size: 12px; font-weight: 500;
+  background: var(--bg-panel); color: var(--folio-ink);
+  border: 1px solid color-mix(in srgb, var(--folio-ink) 38%, transparent);
+  box-shadow: 0 1px 1px rgba(40,30,10,.05);
+}
+:root[data-estilo="editorial"] .folio .btn[data-solo]::before {
+  content: ""; width: 14px; height: 14px; flex-shrink: 0; background: var(--accent);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 12a3 3 0 11-6 0 3 3 0 016 0z'/%3E%3Cpath d='M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 12a3 3 0 11-6 0 3 3 0 016 0z'/%3E%3Cpath d='M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+:root[data-estilo="editorial"] .folio .btn[data-solo]:hover { background: var(--folio-paper); border-color: color-mix(in srgb, var(--folio-ink) 65%, transparent); }
+:root[data-estilo="editorial"] .folio .btn[data-solo]:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+
+
+
+:root[data-estilo="editorial"] .folio.careo-folio { --r2-cuerpo: 16px; }
+:root[data-estilo="editorial"] .careo-folio :is(.fp, :root[data-estilo="editorial"] .acta-turn) { line-height: 1.72; }
+
+
+:root[data-estilo="editorial"] .careo-folio .fp-anchor { right: calc(100% + .45em); letter-spacing: -.02em; }
+:root[data-estilo="editorial"] .careo-folio .folio-title { font-size: 23px; margin-bottom: 6px; }
+:root[data-estilo="editorial"] .careo-folio .folio-rule { margin: 14px 0 12px; }
+
+
+
+
+@container lector (max-width: 560px) {
+  :root[data-estilo="editorial"] .folio { --r2-margen: 60px; --r2-cuerpo: 18px; padding: 22px 16px 36px var(--r2-margen); max-width: calc(100% - 16px); }
+  :root[data-estilo="editorial"] .folio .fp-anchor { right: calc(100% + .5em); }
+  :root[data-estilo="editorial"] .folio-title { font-size: 27px; }
+  :root[data-estilo="editorial"] .folio-kicker, :root[data-estilo="editorial"] .folio-rep, :root[data-estilo="editorial"] .sess-sig { letter-spacing: .04em; }
+  :root[data-estilo="editorial"] .sess-banner { margin-left: calc(14px - var(--r2-margen)); }
+  :root[data-estilo="editorial"] .sess-block.sess-ref { margin-right: -10px; padding-right: 10px; }
+  :root[data-estilo="editorial"] .sess-name { font-size: 22px; }
+}
+@container lector (max-width: 760px) {
+  :root[data-estilo="editorial"] .folio.careo-folio { --r2-cuerpo: 16px; }
+}
+
+
+
+:root[data-estilo="editorial"]:not([data-theme="dark"]) .folio.careo-folio { --r2-ancla: #746b5f; }
+@container lector (max-width: 560px) {
+  :root[data-estilo="editorial"]:not([data-theme="dark"]) .folio { --r2-ancla: #746b5f; }
+}
+
+
+@container lector (max-width: 400px) {
+  :root[data-estilo="editorial"] .folio { --r2-margen: 50px; padding-right: 12px; }
+  :root[data-estilo="editorial"] .folio .fp-anchor { right: calc(100% + .4em); letter-spacing: -.02em; }
+  :root[data-estilo="editorial"] .acta-table .acta-row { overflow-wrap: anywhere; }
+  :root[data-estilo="editorial"] .acta-table .lead-f { flex-basis: .6em; }
+  :root[data-estilo="editorial"] .thread-row { flex-wrap: wrap; row-gap: 0; }
+  :root[data-estilo="editorial"] .thread-ord { width: auto; }
+  :root[data-estilo="editorial"] .thread-name { max-width: 100%; flex-shrink: 1; }
+  :root[data-estilo="editorial"] .thread-aside { flex-basis: 100%; margin-left: 0; white-space: normal; }
+}
+</style>
+<style>
 #dlgCreditos{max-width:720px}
 #dlgCreditos .credito{border-bottom:1px solid var(--border-soft);padding:7px 0}
 #dlgCreditos .credito summary{cursor:pointer;font-size:12.5px}
@@ -1334,8 +1674,9 @@ html:not(.r2-app) body { overflow: hidden; }
 
   <header>
     <div class="hrow hrow-top">
-      <button class="brand" id="corpusBtn" title="Sobre este corpus">
-        <h1>Diarios de Sesiones</h1>
+      
+<button class="brand" id="corpusBtn" title="Sobre este corpus: el conjunto de datos y cómo citarlo">
+        <h1>Luz y Taquígrafos</h1>
         <span class="sub" id="corpusStat">cargando…</span>
         <span class="sub" style="opacity:.6">▾</span>
       </button>
@@ -1351,6 +1692,7 @@ html:not(.r2-app) body { overflow: hidden; }
 
       <button class="btn ghost icon" id="resetBtn" title="Volver al estado inicial: borra el texto, los filtros, el modo y cierra el lector">↺</button>
       <button class="btn ghost icon" id="themeBtn" title="Claro / oscuro">◐</button>
+      <button class="btn ghost icon" id="settingsBtn" title="Ajustes: estilo y tema">⚙</button>
       <button class="btn ghost icon" id="helpBtn" title="Ayuda y atajos">?</button>
     </div>
 
@@ -1589,7 +1931,7 @@ html:not(.r2-app) body { overflow: hidden; }
 
 <dialog id="dlgCreditos" aria-labelledby="creditosTitulo">
   <div class="dhead"><h3 id="creditosTitulo">Créditos y licencias</h3>
-    <p class="dsub">2REP Standalone lleva dentro estos componentes de terceros; no descarga nada de internet.</p></div>
+    <p class="dsub">Esta aplicación lleva dentro estos componentes de terceros; de internet solo descarga, en la versión web, la base del corpus que la acompaña.</p></div>
   <div class="dbody">
 <details class="credito"><summary><b>SQLite 3.53.4 para WebAssembly</b> · dominio público</summary><p class="dsub">Motor de base de datos que construye y consulta el corpus en este navegador.</p><pre class="licencia">LICENCIAS de los archivos de terceros de este directorio
 ========================================================
@@ -3249,6 +3591,95 @@ $Id: LICENSE 2133 2007-11-28 02:46:28Z lechimp $</pre></details>
 
 
 
+(function (R2) {
+  'use strict';
+
+  const g = globalThis;
+  const doc = g.document;
+  const ESTILOS = ['editorial', 'clasico'];
+  const COLOR_TEMA = { editorial: '#6a1a24', clasico: '#4a4fa8' };
+  let dlg = null;
+
+  function leer(clave) { try { return g.localStorage.getItem(clave); } catch (e) { return null; } }
+  function guardar(clave, valor) { try { g.localStorage.setItem(clave, valor); } catch (e) {   } }
+
+  const estilo = () => (ESTILOS.includes(doc.documentElement.dataset.estilo) ? doc.documentElement.dataset.estilo : 'editorial');
+  const tema = () => (doc.documentElement.dataset.theme === 'dark' ? 'dark' : 'light');
+
+
+  function aplicar() {
+    const e = leer('estilo');
+    doc.documentElement.dataset.estilo = ESTILOS.includes(e) ? e : 'editorial';
+    colorTema();
+  }
+
+  function colorTema() {
+    const m = doc.querySelector('meta[name="theme-color"]');
+    if (m) m.setAttribute('content', COLOR_TEMA[estilo()]);
+  }
+
+  function poner(o = {}) {
+    if (o.tema === 'dark' || o.tema === 'light') { doc.documentElement.dataset.theme = o.tema; guardar('tema', o.tema); }
+    if (ESTILOS.includes(o.estilo)) { doc.documentElement.dataset.estilo = o.estilo; guardar('estilo', o.estilo); }
+    colorTema();
+    if (dlg) pintar();
+    try { doc.dispatchEvent(new g.CustomEvent('r2:ajustes', { detail: { tema: tema(), estilo: estilo() } })); } catch (e) {   }
+  }
+
+  const opcion = (grupo, valor, titulo, nota) =>
+    `<label class="chk"><input type="radio" name="${grupo}" value="${valor}"><span class="lbl">${titulo}<small>${nota}</small></span></label>`;
+
+  function crear() {
+    dlg = doc.createElement('dialog');
+    dlg.id = 'dlgAjustes';
+    dlg.setAttribute('aria-labelledby', 'ajustesTitulo');
+    dlg.innerHTML = `<div class="dhead"><h3 id="ajustesTitulo">Ajustes</h3>
+    <p class="dsub">Se recuerdan en este navegador.</p></div>
+  <div class="dbody">
+    <fieldset><legend>Estilo</legend><div class="opciones">
+      ${opcion('estilo', 'editorial', 'Editorial', 'Granate y pliego de lectura: nombre del orador en grande, texto mayor y capital inicial.')}
+      ${opcion('estilo', 'clasico', 'Clásico', 'El aspecto original de la aplicación.')}
+    </div></fieldset>
+    <fieldset><legend>Tema</legend><div class="opciones">
+      ${opcion('tema', 'light', 'Claro', 'Papel claro.')}
+      ${opcion('tema', 'dark', 'Oscuro', 'Fondo oscuro; la misma paleta, adaptada.')}
+    </div></fieldset>
+  </div>
+  <div class="dfoot"><button type="button" class="btn primary" data-close>Cerrar</button></div>`;
+    dlg.addEventListener('change', (ev) => {
+      const t = ev.target;
+      if (!t || t.type !== 'radio' || !t.checked) return;
+      poner(t.name === 'tema' ? { tema: t.value } : { estilo: t.value });
+    });
+    dlg.querySelector('[data-close]').addEventListener('click', () => dlg.close());
+    doc.body.appendChild(dlg);
+  }
+
+  function pintar() {
+    for (const r of dlg.querySelectorAll('input[type="radio"]')) r.checked = r.value === (r.name === 'tema' ? tema() : estilo());
+  }
+
+  function abrir() {
+    if (!dlg) crear();
+    pintar();
+    if (!dlg.open) dlg.showModal();
+  }
+
+  R2.ajustes = { aplicar, estilo, tema, poner, abrir, COLOR_TEMA };
+}(globalThis.R2 = globalThis.R2 || {}));
+//# sourceURL=2rep-standalone/src/arranque/ajustes.js
+</script>
+<script>
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -3284,16 +3715,17 @@ $Id: LICENSE 2133 2007-11-28 02:46:28Z lechimp $</pre></details>
 
   const PLANTILLA = `
 <header class="r2c-cab">
-  <div class="r2c-marca"><h1 class="r2c-titulo">Diarios de Sesiones</h1><span class="r2c-insignia">STANDALONE</span><span class="r2c-sub" data-r2="sub">Sin corpus cargado</span></div>
+  <div class="r2c-marca"><h1 class="r2c-titulo">Luz y Taquígrafos</h1><span class="r2c-insignia">Explorador de los Diarios de Sesiones</span><span class="r2c-sub" data-r2="sub"></span></div>
   <span class="r2c-crece"></span>
   <button type="button" class="btn ghost sm" data-r2="creditos" data-abrir-creditos hidden>Créditos y licencias</button>
+  <button type="button" class="btn ghost icon" data-r2="ajustes" title="Ajustes: estilo y tema" aria-label="Ajustes: estilo y tema">⚙</button>
   <button type="button" class="btn ghost icon" data-r2="tema" title="Claro / oscuro" aria-label="Cambiar entre tema claro y oscuro">◐</button>
 </header>
 <main class="r2c-cuerpo">
   <p class="r2c-nota r2c-aviso" data-r2="aviso" role="status" hidden></p>
   <input type="file" accept=".csv,text/csv" data-r2="archivo" class="r2c-oculto" tabindex="-1" aria-hidden="true">
   <section class="r2c-tarjeta" data-r2="abrir" aria-labelledby="r2c-abrir-t">
-    <p class="r2c-antetitulo">Luz y Taquígrafos · Segunda República Española</p>
+    <p class="r2c-antetitulo">Segunda República Española · 1931–1945</p>
     <h2 class="r2c-h" id="r2c-abrir-t" tabindex="-1">Abra el conjunto de datos</h2>
     <p class="r2c-entrada" data-r2="abrir-entrada">${ENTRADA_ABRIR}</p>
     <p class="r2c-nota" data-r2="nota" role="status" hidden></p>
@@ -3408,6 +3840,19 @@ $Id: LICENSE 2133 2007-11-28 02:46:28Z lechimp $</pre></details>
     doc.body.appendChild(raiz);
     const $ = (k) => raiz.querySelector(`[data-r2="${k}"]`);
 
+
+
+    const conDatos = !!(R2.arranque && typeof R2.arranque.datosPropios === 'function' && R2.arranque.datosPropios());
+    const entradaPorDefecto = conDatos
+      ? 'El corpus viaja con esta aplicación y se abre solo; nada sale de su equipo. Si quiere explorar otro CSV, puede elegirlo aquí.'
+      : ENTRADA_ABRIR;
+    if (conDatos) {
+      raiz.querySelector('#r2c-abrir-t').textContent = 'Abrir otro conjunto de datos';
+      $('abrir-entrada').textContent = entradaPorDefecto;
+      raiz.querySelector('.r2c-soltar-t').innerHTML = 'Arrastre aquí otro CSV (<span class="r2c-mono">2REP_Diaries.csv</span>)';
+      raiz.querySelector('.r2c-privacidad li:first-child span:last-child').textContent = 'Todo se procesa en su navegador; nada se sube a ningún servidor.';
+    }
+
     const v = { seccion: null, raiz };
 
 
@@ -3455,6 +3900,7 @@ $Id: LICENSE 2133 2007-11-28 02:46:28Z lechimp $</pre></details>
       entrada.value = '';
       if (f) llamar('alElegir', f);
     });
+    escuchar($('ajustes'), 'click', () => { if (R2.ajustes) R2.ajustes.abrir(); });
     escuchar($('reintentar'), 'click', () => llamar('alReintentar'));
     escuchar($('fallo-reintentar'), 'click', () => llamar('alReintentar'));
     escuchar($('cancelar'), 'click', () => llamar('alCancelar'));
@@ -3538,7 +3984,7 @@ $Id: LICENSE 2133 2007-11-28 02:46:28Z lechimp $</pre></details>
     v.mostrarAbrir = (o = {}) => {
       mostrar('abrir');
       $('sub').textContent = 'Sin corpus cargado';
-      if (o.entrada !== undefined) $('abrir-entrada').textContent = o.entrada || ENTRADA_ABRIR;
+      if (o.entrada !== undefined) $('abrir-entrada').textContent = o.entrada || entradaPorDefecto;
       const nota = $('nota');
       nota.textContent = o.nota || '';
       nota.hidden = !o.nota;
@@ -3617,7 +4063,9 @@ $Id: LICENSE 2133 2007-11-28 02:46:28Z lechimp $</pre></details>
       $('sub').textContent = o.ficha || 'Base recordada';
       $('rec-ficha').textContent = o.ficha || '';
       $('rec-titulo').textContent = o.titulo || 'Abriendo la base recordada…';
-      $('rec-entrada').textContent = o.entrada || 'Esta base se guardó en este navegador: se abre sin volver a elegir el CSV.';
+      $('rec-entrada').textContent = o.entrada || (conDatos
+        ? 'Esta base se guardó en este navegador: se abre sin descargarla ni prepararla de nuevo.'
+        : 'Esta base se guardó en este navegador: se abre sin volver a elegir el CSV.');
       $('rec-cancelar').textContent = o.textoCancelar || 'Cancelar y elegir otro CSV';
       $('rec-cancelar').hidden = o.cancelar === false;
       const barra = $('rec-barra');
@@ -3886,7 +4334,10 @@ $Id: LICENSE 2133 2007-11-28 02:46:28Z lechimp $</pre></details>
 
   const ID = 'r2-sobre';
   const EVENTO = 'r2:sobre-corpus';
-  const NOTA = 'El corpus existe solo en esta pestaña: si la cierra o la recarga, habrá que volver a elegir el CSV.';
+
+  const NOTA = () => (R2.arranque && typeof R2.arranque.datosPropios === 'function' && R2.arranque.datosPropios()
+    ? 'El corpus existe solo en esta pestaña: si la cierra o la recarga, se volverá a preparar desde los datos incluidos.'
+    : 'El corpus existe solo en esta pestaña: si la cierra o la recarga, habrá que volver a elegir el CSV.');
   const P = () => R2.progreso;
   let montado = null;
 
@@ -3972,7 +4423,7 @@ $Id: LICENSE 2133 2007-11-28 02:46:28Z lechimp $</pre></details>
       + `<dl class="r2s-datos">${datosHtml(m)}</dl>`
       + `<ul class="r2s-avisos" aria-label="Avisos sobre el archivo"${m.avisos.length ? '' : ' hidden'}>${avisosHtml(m)}</ul>`
       + (web ? web : '')
-      + `<p class="dsub r2s-nota"${web ? ' hidden' : ''}>${esc(NOTA)}</p></div>`;
+      + `<p class="dsub r2s-nota"${web ? ' hidden' : ''}>${esc(NOTA())}</p></div>`;
   }
 
   function html(info) {
@@ -5227,7 +5678,7 @@ $Id: LICENSE 2133 2007-11-28 02:46:28Z lechimp $</pre></details>
   }
 
   const MENSAJES = {
-    NO_DISPONIBLE: 'Este navegador no permite guardar la base: tendrá que elegir el CSV en cada visita.',
+    NO_DISPONIBLE: 'Este navegador no permite guardar la base en su almacenamiento.',
     NO_RECORDADO: 'No hay ninguna base recordada en este navegador. Elija el CSV.',
     RECORDADO_DANADO: 'La base recordada estaba dañada o incompleta y se ha borrado. Elija el CSV para volver a construirla.',
     EN_USO: 'La base recordada se está usando en otra pestaña de 2REP_Standalone. Espere unos segundos y vuelva a intentarlo.',
@@ -5730,10 +6181,22 @@ $Id: LICENSE 2133 2007-11-28 02:46:28Z lechimp $</pre></details>
     return `«${r.nombre_csv || 'CSV'}» (${v})${conBytes ? ` · ${mib(r.bytes)}` : ''}`;
   }
 
+
+
+  const conDatos = () => !!(R2.arranque && typeof R2.arranque.datosPropios === 'function' && R2.arranque.datosPropios());
+
+  function sinBaseTexto(prefijo) {
+    const p = conDatos() ? (R2.arranque.datosPropios().tipo === 'servido'
+      ? 'el corpus se descargará de nuevo en cada visita' : 'el corpus se volverá a preparar desde los datos incluidos en cada visita')
+      : 'tendrá que elegir el CSV en cada visita';
+    return prefijo ? `${prefijo}: ${p}.` : p;
+  }
+  const sinElegirCsv = () => (conDatos() ? 'sin descargarla ni prepararla de nuevo' : 'sin elegir el CSV');
+
   function textoSinAlmacen() {
-    return S.archivoLocal
-      ? 'Este navegador no permite guardar la base con la página abierta como archivo: tendrá que elegir el CSV en cada visita.'
-      : 'Este navegador no permite guardar la base: tendrá que elegir el CSV en cada visita.';
+    return sinBaseTexto(S.archivoLocal
+      ? 'Este navegador no permite guardar la base con la página abierta como archivo'
+      : 'Este navegador no permite guardar la base');
   }
 
   function cerrojo(modo, fn, esperaMs, signal) {
@@ -5889,7 +6352,7 @@ $Id: LICENSE 2133 2007-11-28 02:46:28Z lechimp $</pre></details>
       } else if (r.ya_recordado) {
         texto = 'Esta base ya estaba recordada en este navegador.';
       } else {
-        texto = `Base recordada en este navegador (${mib(r.recordado && r.recordado.bytes)}): la próxima vez se abrirá sola, sin elegir el CSV.`
+        texto = `Base recordada en este navegador (${mib(r.recordado && r.recordado.bytes)}): la próxima vez se abrirá sola, ${sinElegirCsv()}.`
           + (cambio ? ` Sustituye a la que había (${describir(anterior, false)}).` : '');
       }
       avisar(texto);
@@ -5983,8 +6446,8 @@ $Id: LICENSE 2133 2007-11-28 02:46:28Z lechimp $</pre></details>
           : 'Se borrará de este navegador lo que quede guardado de la base.',
         'Sus bibliotecas no se borran: siguen guardadas en este navegador.',
       ];
-      if (enApp) parrafos.push('Esta pestaña sigue funcionando con la base abierta hasta que la cierre o la recargue; después habrá que volver a elegir el CSV.');
-      if (S.auto) parrafos.push('La próxima vez que elija el CSV se volverá a recordar, salvo que desmarque «Recordar la base en este navegador».');
+      if (enApp) parrafos.push(`Esta pestaña sigue funcionando con la base abierta hasta que la cierre o la recargue; después ${conDatos() ? sinBaseTexto('').replace(' en cada visita', ' al abrir la página') : 'habrá que volver a elegir el CSV'}.`);
+      if (S.auto) parrafos.push(`${conDatos() ? 'La próxima vez que se abra el corpus' : 'La próxima vez que elija el CSV'} se volverá a recordar, salvo que desmarque «Recordar la base en este navegador».`);
       if (!(await confirmar({ titulo: '¿Olvidar la base recordada?', parrafos, si: 'Olvidar la base', peligro: true }))) return false;
     }
     S.operacion = 'olvidar';
@@ -6135,7 +6598,7 @@ $Id: LICENSE 2133 2007-11-28 02:46:28Z lechimp $</pre></details>
 
 
   const btn = (que, texto, o = {}) => `<button type="button" class="btn${o.clase ? ` ${o.clase}` : ''}" data-r2-web="${que}"${o.off ? ' disabled' : ''}>${esc(texto)}</button>`;
-  const casilla = () => `<label class="r2w-auto"><input type="checkbox" data-r2-web="auto"${S.auto ? ' checked' : ''}><span>Recordar la base en este navegador (≈260 MB): al volver, se abrirá sola sin elegir el CSV.</span></label>`;
+  const casilla = () => `<label class="r2w-auto"><input type="checkbox" data-r2-web="auto"${S.auto ? ' checked' : ''}><span>Recordar la base en este navegador (≈260 MB): al volver, se abrirá sola ${sinElegirCsv()}.</span></label>`;
   const mensajeHtml = () => `<p class="r2w-msg" role="status" data-error="${S.error ? 1 : 0}"${S.mensaje ? '' : ' hidden'}>${esc(S.mensaje)}</p>`;
 
   function htmlCarga() {
@@ -6153,7 +6616,7 @@ $Id: LICENSE 2133 2007-11-28 02:46:28Z lechimp $</pre></details>
         + `<div class="r2c-botones">${btn('abrir', 'Abrir la base recordada', { clase: 'primary', off: ocupado })}${btn('olvidar', 'Olvidar la base', { off: ocupado })}</div>`
         + '<p class="r2w-nota">Si elige otro CSV, su base sustituirá a esta cuando esté construida y guardada; si algo falla, esta se conserva.</p>';
     } else {
-      h += `<p class="r2w-ficha">${S.auto ? 'Ninguna todavía: cuando elija el CSV, la base se guardará aquí y la próxima vez se abrirá sola.' : 'Ninguna.'}</p>`;
+      h += `<p class="r2w-ficha">${S.auto ? `Ninguna todavía: ${conDatos() ? 'en cuanto se abra el corpus' : 'cuando elija el CSV'}, la base se guardará aquí y la próxima vez se abrirá sola.` : 'Ninguna.'}</p>`;
     }
     if (modoOk() && !(c && c.error)) h += casilla();
     if (modoOk() && S.gecko && S.archivoLocal) h += `<p class="r2w-nota">${esc(TEXTO_FIREFOX)}</p>`;
@@ -6169,14 +6632,14 @@ $Id: LICENSE 2133 2007-11-28 02:46:28Z lechimp $</pre></details>
     else if (S.modo === 'ninguno') h += `<p>${esc(textoSinAlmacen())}</p>`;
     else if (c && c.error) h += `<p>${esc(c.error.mensaje)}</p>${btn('consultar', 'Volver a comprobar', { clase: 'sm', off: ocupado })}`;
     else if (corpusRecordado()) {
-      h += `<p>Esta base está recordada en este navegador (${esc(describir(r))}): al volver, se abrirá sola sin elegir el CSV.</p>`
+      h += `<p>Esta base está recordada en este navegador (${esc(describir(r))}): al volver, se abrirá sola ${sinElegirCsv()}.</p>`
         + btn('reemplazar', 'Reemplazar por otra versión…', { clase: 'sm', off: ocupado }) + btn('olvidar', 'Olvidar la base', { clase: 'sm', off: ocupado });
     } else {
       if (S.operacion === 'recordar') h += '<p>Guardando la base en este navegador…<span data-r2w="progreso"></span></p>';
       else if (S.pendienteRecordar) h += '<p>La base se guardará en cuanto termine la comprobación de la huella del CSV…</p>';
       else {
         const huella = S.api && S.api.huella ? S.api.huella() : null;
-        h += '<p>Esta base no está recordada: si cierra o recarga la pestaña, habrá que volver a elegir el CSV.</p>'
+        h += `<p>Esta base no está recordada: si cierra o recarga la pestaña, ${conDatos() ? sinBaseTexto('').replace(' en cada visita', '') : 'habrá que volver a elegir el CSV'}.</p>`
           + btn('recordar', 'Recordar la base en este navegador (≈260 MB)', { clase: 'sm', off: ocupado || huella === 'fallida' });
       }
       if (r) h += `<p>Hay otra base recordada: ${esc(describir(r))}.</p>${btn('olvidar', 'Olvidar la base recordada', { clase: 'sm', off: ocupado })}`;
@@ -7215,6 +7678,7 @@ $Id: LICENSE 2133 2007-11-28 02:46:28Z lechimp $</pre></details>
     marcar('inicio');
     if (typeof g.addEventListener === 'function') g.addEventListener('beforeunload', alDescargar);
     aplicarTema();
+    if (R2.ajustes) R2.ajustes.aplicar();
     try { montarAnuncios(); } catch (e) {   }
     S.sondeo = R2.capacidades.sondearSincrono(g);
     if (R2.web) {
@@ -7290,7 +7754,7 @@ $Id: LICENSE 2133 2007-11-28 02:46:28Z lechimp $</pre></details>
   }
 
   R2.arranque = { iniciar, estado, decodificarRecurso, persistencia: () => S.persistencia, motorBibliotecas, observarRespuesta,
-    cambiaBibliotecas, RUTA_BIBLIOTECA };
+    cambiaBibliotecas, datosPropios, RUTA_BIBLIOTECA };
 
   const noApto = typeof window !== 'undefined' && window.R2_NAVEGADOR && window.R2_NAVEGADOR.apto === false;
   if (typeof window !== 'undefined' && typeof document !== 'undefined' && !globalThis.R2_ARRANQUE_MANUAL && !noApto) {
@@ -7299,7 +7763,7 @@ $Id: LICENSE 2133 2007-11-28 02:46:28Z lechimp $</pre></details>
       try {
         const p = document.createElement('p');
         p.setAttribute('role', 'alert');
-        p.style.cssText = 'position:fixed;inset:auto 16px 16px 16px;padding:12px 14px;background:#fff;color:#1d1b18;border:1px solid #a33228;border-radius:7px;font:14px/1.5 system-ui,sans-serif;z-index:100';
+        p.style.cssText = 'position:fixed;inset:auto 16px 16px 16px;padding:12px 14px;background:#fff;color:#1d1b18;border:1px solid #c21d1d;border-radius:7px;font:14px/1.5 system-ui,sans-serif;z-index:100';
         p.textContent = `No se pudo iniciar 2REP_Standalone: ${textoDe(e)}. Recargue la página o use Chrome, Edge, Firefox o Safari en una versión reciente.`;
         document.body.appendChild(p);
       } catch (e2) {   }
@@ -9344,6 +9808,10 @@ function fatal(msg) {
 function renderHeader() {
   const i = S.info;
   $('#corpusStat').textContent =
+
+
+    'Explorador de los Diarios de Sesiones · ' +
+
     `${nf(i.n_speeches)} intervenciones · ${i.date_min?.slice(0, 4)}–${i.date_max?.slice(0, 4)}`
       ;
   $('#q').placeholder = placeholderBusqueda(i);
@@ -10166,6 +10634,10 @@ function renderReader(d, { restore = false } = {}) {
     ${threadHTML(d)}
   </article>`;
 
+  marcarCapital($('#reader .folio-body'));
+  cabeceraSinCortes($('#reader'));
+
+
   const sc = $('#reader');
   if (restore && S.speechScroll?.id === d.id) { sc.scrollTop = S.speechScroll.top; return; }
   sc.scrollTop = 0;
@@ -10271,8 +10743,202 @@ function sessEstimate(s, h) {
   const n = h.nchars || 0;
   const lineas = Math.max(1, Math.ceil(n / s.cpl));
   const parrafos = Math.max(1, Math.round(n / 900));
+
+
+
+  if (s.metrica) return (lineas * s.metrica.lh + parrafos * s.metrica.mb) * (s.corr || 1);
+
   return lineas * 30.1 + parrafos * 19.25;
 }
+
+
+
+
+
+
+
+
+
+
+
+const SESS_MUESTRA = 'Señores Diputados, la Comisión ha examinado con detenimiento el proyecto de ley y propone a la Cámara '
+  + 'que se apruebe con las modificaciones que constan en el dictamen, porque así lo exige el interés de la República. ';
+const SESS_LLENADO = 1.07;
+function sessMetrica(body) {
+  if (!body) return null;
+  const p = document.createElement('p');
+  p.className = 'fp';
+  p.setAttribute('aria-hidden', 'true');
+  p.style.cssText = 'position:absolute;left:0;top:0;visibility:hidden;white-space:nowrap;text-indent:0;width:auto';
+  p.textContent = SESS_MUESTRA;
+  body.appendChild(p);
+  const cs = getComputedStyle(p);
+  const fs = parseFloat(cs.fontSize);
+  const lh = cs.lineHeight.endsWith('px') ? parseFloat(cs.lineHeight) : fs * (parseFloat(cs.lineHeight) || 1.78);
+  const mb = parseFloat(cs.marginBottom) || 0;
+  const cw = p.getBoundingClientRect().width / SESS_MUESTRA.length;
+  p.remove();
+  return fs > 0 && lh > 0 && cw > 0 ? { lh, mb, cw: cw * SESS_LLENADO } : null;
+}
+
+
+
+
+
+
+
+
+
+
+
+const CAPITAL_SIGNOS = '«"“\'‘¿¡';
+function marcarCapital(raiz) {
+  if (!raiz) return;
+  for (const p of raiz.querySelectorAll('.fp.first')) {
+    if (p.querySelector(':scope > .r2-capital')) continue;
+    const w = document.createTreeWalker(p, NodeFilter.SHOW_ELEMENT | NodeFilter.SHOW_TEXT, {
+      acceptNode: n => (n.nodeType === 1 && n.classList.contains('fp-anchor') ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT),
+    });
+    const tramos = [];
+    let cap = '', letra = null, empezado = false, vale = true;
+    busca: for (let n = w.nextNode(); n; n = w.nextNode()) {
+      if (n.nodeType === 1) {
+        if (!empezado && n.matches('.acot-inline, .acta-note-inline')) { vale = false; break; }
+        continue;
+      }
+      const t = n.nodeValue;
+      let desde = -1;
+      for (let i = 0; i < t.length; i++) {
+        const c = t[i];
+        if (!empezado && /\s/.test(c)) continue;
+        empezado = true;
+        if (CAPITAL_SIGNOS.includes(c) && cap.length < 3) { if (desde < 0) desde = i; cap += c; continue; }
+        if (/\p{L}/u.test(c)) { if (desde < 0) desde = i; cap += c; tramos.push([n, desde, i + 1]); letra = n; break busca; }
+        vale = false; break busca;
+      }
+      if (desde >= 0) tramos.push([n, desde, t.length]);
+    }
+    if (!vale || !letra) continue;
+    const enMark = !!letra.parentElement?.closest('mark');
+    for (const [n, a, b] of tramos) {
+      const medio = n.splitText(a);
+      medio.splitText(b - a);
+      const s = document.createElement('span');
+      s.className = 'r2-cap-texto';
+      medio.replaceWith(s);
+      s.appendChild(medio);
+    }
+    const c = document.createElement('span');
+    c.className = 'r2-capital' + (enMark ? ' en-mark' : '');
+    c.setAttribute('aria-hidden', 'true');
+    c.dataset.signo = cap.slice(0, -1);
+    c.dataset.letra = cap.slice(-1);
+    const ancla = p.querySelector(':scope > .fp-anchor');
+    p.insertBefore(c, ancla ? ancla.nextSibling : p.firstChild);
+    p.classList.add('r2-cap');
+  }
+}
+
+
+
+function cabeceraSinCortes(raiz) {
+  for (const k of raiz?.querySelectorAll('.folio-kicker') || []) {
+    for (const n of [...k.childNodes]) {
+      if (n.nodeType !== 3) continue;
+      const m = /págs\.\s\d+–\d+/.exec(n.nodeValue);
+      if (!m) continue;
+      const medio = n.splitText(m.index);
+      medio.splitText(m[0].length);
+      const s = document.createElement('span');
+      s.className = 'r2-nowrap';
+      medio.replaceWith(s);
+      s.appendChild(medio);
+    }
+  }
+}
+
+
+
+
+
+
+
+
+function sessLecturaTop(L) {
+  if (L.nodo) {
+    if (!L.nodo.isConnected) return null;
+    const len = L.nodo.nodeValue.length;
+    if (!len) return null;
+    const a = Math.max(0, Math.min(L.off, len - 1));
+    const r = document.createRange();
+    r.setStart(L.nodo, a); r.setEnd(L.nodo, a + 1);
+    const q = r.getClientRects()[0];
+    return q && q.height > 0 ? q.top : null;
+  }
+  return L.el?.isConnected ? L.el.getBoundingClientRect().top : null;
+}
+function sessLecturaGuardar(s) {
+  const sc = $('#reader');
+  if (!s?.active || !s.root?.isConnected || sc.clientWidth !== s.width) return;
+  const box = sc.getBoundingClientRect(), f = s.root.getBoundingClientRect();
+  const x = Math.min(Math.max(f.left + f.width / 2, box.left + 1), box.right - 1), y = box.top + 60;
+  let L = null;
+  const cp = document.caretPositionFromPoint?.(x, y);
+  const cr = cp ? null : document.caretRangeFromPoint?.(x, y);
+  const nodo = cp ? cp.offsetNode : cr?.startContainer, off = cp ? cp.offset : cr?.startOffset;
+  if (nodo?.nodeType === 3 && s.root.contains(nodo)) {
+    const t = sessLecturaTop(L = { nodo, off });
+    if (t == null) L = null; else L.top = t - box.top;
+  }
+  if (!L) {
+    const h = document.elementFromPoint(x, y);
+    const el = h && s.root.contains(h)
+      ? h.closest('.fp, .acot, .acta-turn, .acta-chronicle, .acta-note, .acta-list, .acta-table, .sess-head, .sess-body, .sess-block') : null;
+    if (el) L = { el, top: el.getBoundingClientRect().top - box.top };
+  }
+  s.lectura = L;
+}
+function sessLecturaRestaurar(s, fn) {
+  const L = s.lectura, sc = $('#reader');
+  if (!L || !s.active || !s.root?.isConnected || !(L.nodo || L.el)?.isConnected) return false;
+  fn();
+  const t = sessLecturaTop(L);
+  if (t != null) {
+    const d = t - sc.getBoundingClientRect().top - L.top;
+    if (Math.abs(d) >= 0.5) sc.scrollTop += d;
+  }
+  sessLecturaGuardar(s);
+  return true;
+}
+
+
+
+
+
+
+
+
+
+function sessAprender(s, els) {
+  if (!s.metrica || s.corrHecha) return;
+  const base = s.corr || 1;
+  for (const b of els) {
+    if (b.classList.contains('sess-ref')) continue;
+    const est = sessEstimate(s, s.outline.speeches[+b.dataset.idx]) / base;
+    const med = b.querySelector('.sess-body').getBoundingClientRect().height;
+    if (est > 0 && med > 0) { s.aprEst = (s.aprEst || 0) + est; s.aprMed = (s.aprMed || 0) + med; }
+  }
+  if ((s.aprEst || 0) < 2500) return;
+  s.corrHecha = true;
+  const c = Math.min(1.25, Math.max(0.8, s.aprMed / s.aprEst));
+  if (Math.abs(c / base - 1) <= 0.02) return;
+  s.corr = c;
+  for (const b of s.blocks) {
+    if (s.loaded.has(+b.dataset.sid)) continue;
+    b.querySelector('.sess-body').style.height = `${sessEstimate(s, s.outline.speeches[+b.dataset.idx]).toFixed(1)}px`;
+  }
+}
+
 
 
 
@@ -10280,6 +10946,12 @@ function sessSizes(s) {
   const body = s.blocks.find(b => !b.classList.contains('sess-ref'))?.querySelector('.sess-body');
   const w = body?.getBoundingClientRect().width || 560;
   s.cpl = Math.max(28, w / 7.9);
+
+  s.metrica = sessMetrica(body);
+  if (s.metrica) s.cpl = Math.max(28, w / s.metrica.cw);
+  s.aprEst = s.aprMed = 0;
+  s.corrHecha = false;
+
   s.width = $('#reader').clientWidth;
   for (const b of s.blocks) {
     if (b.classList.contains('loaded')) continue;
@@ -10412,6 +11084,12 @@ function sessObserve(s, { io = true } = {}) {
         if (!s.active || S.session !== s || sc.clientWidth === s.width) return;
 
 
+
+        if (sessLecturaRestaurar(s, () => {
+          sessSizes(s);
+          sessMeasure(s.blocks.filter(b => b.classList.contains('loaded')));
+        })) return;
+
         withScrollAnchor(s, () => {
           sessSizes(s);
           sessMeasure(s.blocks.filter(b => b.classList.contains('loaded')));
@@ -10519,6 +11197,9 @@ function sessFill(s, ids) {
       if (!doc || !blk) continue;
       const body = blk.querySelector('.sess-body');
       body.innerHTML = renderDoc(doc, id, { terms: s.terms });
+
+      marcarCapital(body);
+
       body.classList.remove('ph');
       body.style.height = '';
       s.loaded.add(id);
@@ -10526,6 +11207,9 @@ function sessFill(s, ids) {
       els.push(blk);
     }
     sessMeasure(els);
+
+    sessAprender(s, els);
+
     for (const el of els) el.classList.add('loaded');
     return els;
   });
@@ -11862,7 +12546,20 @@ const TREND_PAL = {
            band: '#25252b', recess: '#222227', hatch: '#3b3b43', ms: '#8d8980', pick: '#2d3044',
            series: ['#9ca0f0', '#e38b5d', '#4cc4ac', '#d8ad55', '#c98ad0', '#7fb3dd', '#a6c56d', '#e27d8c'] },
 };
-const trendPal = () => TREND_PAL[document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light'];
+
+
+
+
+
+const TREND_PAL_EDITORIAL = {
+  light: { ...TREND_PAL.light, pick: '#f1e3e4', series: [...TREND_PAL.light.series.slice(0, 7), '#5b6770'] },
+  dark:  { ...TREND_PAL.dark,  pick: '#3b262a', series: [...TREND_PAL.dark.series.slice(0, 7), '#b3bcc6'] },
+};
+const trendPal = () => (document.documentElement.dataset.estilo === 'editorial' ? TREND_PAL_EDITORIAL : TREND_PAL)[
+  document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light'];
+
+
+
 
 const TREND_ICON = {
   baja: '<svg class="ticon" viewBox="0 0 10 10" aria-hidden="true"><circle cx="5" cy="5" r="3.2" fill="none" stroke="currentColor" stroke-width="1.3"/></svg>',
@@ -13814,6 +14511,16 @@ function helpHTML() {
 }
 
 
+{
+  const helpHTMLEscritorio = helpHTML;
+  helpHTML = () => {
+    const h = helpHTMLEscritorio();
+    return document.documentElement.dataset.estilo === 'editorial' ? h.replace('(Rumores.)</span> lacre:', '(Rumores.)</span> teja:') : h;
+  };
+}
+
+
+
 
 
 
@@ -13910,6 +14617,12 @@ function wire() {
     if (S.trend.open && S.trend.tab === 'trend') trendRender();
   };
   $('#helpBtn').onclick = () => { $('#helpBody').innerHTML = helpHTML(); $('#dlgHelp').showModal(); };
+
+
+
+  $('#settingsBtn').onclick = () => { const A = globalThis.R2 && globalThis.R2.ajustes; if (A) A.abrir(); };
+  document.addEventListener('r2:ajustes', () => { if (S.trend.open && S.trend.tab === 'trend') trendRender(); });
+
   $('#importLibFile').onchange = e => importLibraryFile(e.target.files?.[0]);
 
 
@@ -13980,6 +14693,14 @@ function wire() {
       if (blk && document.activeElement !== sel) sel.value = blk.dataset.idx;
     });
   }, { passive: true });
+
+
+  let rafLectura = 0;
+  $('#reader').addEventListener('scroll', () => {
+    if (rafLectura || S.readMode !== 'session' || !S.session?.active) return;
+    rafLectura = requestAnimationFrame(() => { rafLectura = 0; sessLecturaGuardar(S.session); });
+  }, { passive: true });
+
 
 
   $('#careoBtn').onclick = toggleCareo;

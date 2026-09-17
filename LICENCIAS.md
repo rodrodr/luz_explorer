@@ -1,6 +1,6 @@
-# Créditos y licencias · 2REP Standalone (versión web)
+# Créditos y licencias · Luz y Taquígrafos, explorador (versión web)
 
-2REP Standalone lleva dentro estos componentes de terceros; la página no descarga nada de internet.
+La aplicación lleva dentro estos componentes de terceros; de internet solo descarga, una vez, la base del corpus que la acompaña (datos/).
 
 ## SQLite 3.53.4 para WebAssembly · dominio público
 

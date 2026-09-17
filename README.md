@@ -10,6 +10,8 @@ No hay que descargar ni cargar nada: **el corpus viaja con la web**. Al abrirla 
 
 Búsqueda por palabras: `palabra`, `"frase exacta"`, `A + B` (las dos), `A | B` (una u otra) y paréntesis.
 
+El botón ⚙ abre **Ajustes**: estilo **editorial** (granate y pliego de lectura, el de por defecto) o **clásico**, y tema claro u oscuro. Se recuerdan en su navegador.
+
 El filtro **«Solo lo que se habla»**, el primero del panel, deja fuera el sumario de cada sesión y el material que el Diario imprime dentro del acta —listas de votación, ruegos por escrito, dictámenes leídos, el relato de la Mesa—: 121.700 filas se quedan en 108.291 de habla.
 
 Quien prefiera explorar otro archivo puede seguir abriendo el CSV publicado en Dataverse (https://doi.org/10.7910/DVN/THQCMI) desde la pantalla de carga.
