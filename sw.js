@@ -2,7 +2,7 @@
  *
  * Guarda en caché SOLO la página (index.html) y el manifiesto de ESTA versión, identificada por el sha256 de index.html
  * (se comprueba al instalar), y los sirve primero desde la caché, también sin red. Todo lo demás (sw.js, LICENCIAS.md,
- * CITA.md…) va a la red. El CSV nunca pasa por aquí: se lee de un archivo del equipo.
+ * CITA.md, datos/…) va a la red: la base que acompaña a la página son 111 MB y la guarda el propio motor (OPFS), no esta caché.
  *
  * Prototipo M0b (spike/build_spike.mjs, RESULTADOS_M0b.md §3.1 y §11.4.4):
  *   - WebKit puede terminar cache.put sin error y sin guardar nada: se comprueba con match y, si no está, la página se
@@ -11,8 +11,8 @@
  *   - activate borra las cachés y las copias de otras versiones.
  */
 'use strict';
-const VERSION = 'a861832f236a3b059ed7b46b4707379ebd4d50c2456db571d7a48b2af1a95f43';   // sha256 de index.html
-const BUILD_ID = '413ae742d295b01a';
+const VERSION = 'a17638bf2ccfc897185d15c3c5373dc2435da3f5d84eb04ae4b9368f6fa28e7b';   // sha256 de index.html
+const BUILD_ID = 'f7c6707c38c5bb5e';
 const CACHE = '2rep-web-' + VERSION.slice(0, 16);
 const IDB = '2rep-web-sw';
 const hex = (buf) => Array.from(new Uint8Array(buf), (b) => b.toString(16).padStart(2, '0')).join('');

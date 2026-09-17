@@ -389,4 +389,4 @@ $Id: LICENSE 2133 2007-11-28 02:46:28Z lechimp $
 
 ## Datos
 
-Los datos no forman parte de esta web: cada usuario abre en su navegador el CSV publicado en Harvard Dataverse (doi:10.7910/DVN/THQCMI), que nunca se sube a ningún servidor. Licencia de los datos: CC BY 4.0 (http://creativecommons.org/licenses/by/4.0). Cómo citarlos: CITA.md.
+Los datos se publican con esta web, en datos/: la base ya construida del conjunto publicado en Harvard Dataverse (doi:10.7910/DVN/THQCMI). La página la descarga una vez, comprueba su huella y la abre en su navegador; nada se sube a ningún servidor. Licencia de los datos: CC BY 4.0 (http://creativecommons.org/licenses/by/4.0). Cómo citarlos: CITA.md.
