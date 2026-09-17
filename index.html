@@ -1088,8 +1088,13 @@ dialog .dfuente:empty { display: none; }
 
 .folio-doc .folio-title { font-size: .96rem; letter-spacing: .04em; text-transform: uppercase;
   color: var(--muted, #6b6257); font-weight: 600; }
+
+
+
+
 .folio-doc .folio-body { font-family: var(--sans, system-ui, sans-serif); font-size: .92rem;
-  color: var(--muted, #6b6257); border-left: 3px solid var(--rule, #d9d2c6); padding-left: .9rem; }
+  color: var(--muted, #6b6257); border-left: 3px solid var(--rule, #d9d2c6);
+  margin-left: -40px; padding-left: 40px; }
 .folio-doc.doc-summary .folio-body { font-style: italic; }
 .consta.doc { color: var(--muted, #6b6257); font-style: italic; }
 
@@ -1106,6 +1111,11 @@ dialog .dfuente:empty { display: none; }
 .fdoc input { margin-top: 3px; flex: none; }
 .fdoc b { display: block; font-weight: 600; }
 .fdoc small { display: block; margin-top: 3px; color: var(--muted, #6b6257); font-size: 11px; line-height: 1.45; }
+
+
+.lib-card .lib-ren { margin: -4px 0 0; flex-shrink: 0; font-size: 12px; line-height: 1; opacity: .45; }
+.lib-card:hover .lib-ren, .lib-card.sel .lib-ren, .lib-card .lib-ren:focus-visible { opacity: 1; }
+.lib-card .lib-ren:hover { background: var(--bg-active); }
 </style>
 <style>
 
@@ -11169,6 +11179,8 @@ function renderLibList() {
              ${esc((c.updated_at || '').slice(0, 10))}</p>
           ${c.description ? `<p style="margin-top:3px">${esc(c.description)}</p>` : ''}
         </div>
+        <button type="button" class="btn ghost icon lib-ren" data-renlib="${c.id}"
+          aria-label="Cambiar el nombre de la biblioteca «${esc(c.name)}»" title="Cambiar el nombre de la biblioteca «${esc(c.name)}»">✎</button>
         <button type="button" class="btn ghost icon lib-del" data-dellib="${c.id}"
           aria-label="Borrar la biblioteca «${esc(c.name)}»" title="Borrar la biblioteca «${esc(c.name)}» (pide confirmación)">🗑</button>
       </div>`).join('')
@@ -14069,6 +14081,8 @@ function wire() {
 
     const dl = e.target.closest('[data-dellib]');
     if (dl) { openDelLib(+dl.dataset.dellib); return; }
+    const rn = e.target.closest('[data-renlib]');
+    if (rn) { renameLibrary(+rn.dataset.renlib); return; }
     const lib = e.target.closest('[data-lib]');
     if (lib) { loadLibraryItems(+lib.dataset.lib); return; }
     if (e.target.id === 'newLibBtn') { newLibrary(); return; }
@@ -14205,6 +14219,26 @@ async function newLibrary() {
     const c = await api('/collections', { method: 'POST', body: { name: name.trim() } });
     await refreshCollections(); S.libSel = c.id; renderLibraryView();
     toast(`Biblioteca «${c.name}» creada`);
+  } catch (e) { toast(e.message, true); }
+}
+
+
+
+
+
+async function renameLibrary(cid) {
+  const c = S.collections.find(x => x.id === cid);
+  if (!c) return;
+  const name = prompt('Nombre de la biblioteca:', c.name);
+  if (name === null) return;
+  const limpio = name.trim();
+  if (!limpio || limpio === c.name) return;
+  try {
+    const r = await api(`/collections/${cid}`, { method: 'PATCH', body: { name: limpio } });
+    await refreshCollections();
+    if (S.view === 'library') { renderLibList(); listHead(); if (S.libSel === cid) loadLibraryItems(cid); }
+    else renderFilters();
+    toast(`La biblioteca se llama ahora «${r.name}»`);
   } catch (e) { toast(e.message, true); }
 }
 
