@@ -19,6 +19,8 @@ Quien prefiera explorar otro archivo puede seguir abriendo el CSV publicado en D
 - Todo se procesa dentro de su navegador: **nada se sube a ningún servidor**.
 - La web no usa analítica, cookies ni recursos externos.
 - Las bibliotecas se guardan en su navegador. Expórtelas como `.2replib` si quiere conservarlas o compartirlas.
+- Empieza sin bibliotecas. En «Mis bibliotecas», «Añadir bibliotecas del proyecto…» ofrece las preparadas con el proyecto
+  (discursos principales, debates, sesiones y anécdotas): elija las que quiera.
 
 ## Requisitos
 
