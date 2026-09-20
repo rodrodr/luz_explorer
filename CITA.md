@@ -13,4 +13,4 @@ Los datos que explora 2REP Standalone son el conjunto publicado en Harvard Datav
 
 Si se abre la V1, la página corrige al cargarla las fechas de 7 sesiones (894 intervenciones) con la tabla de correcciones que lleva dentro, y lo indica en «Sobre este corpus». La V2 ya trae esas fechas corregidas, así que con las dos el corpus es el mismo.
 
-Esta web se publica con la base ya construida a partir de ese CSV (datos/, 3 partes, sha256 c68ef9cdc2b29f8869ced272b8f8f9c23b04644bdb1fd1f15b96862643dd9beb): la página la descarga, comprueba su huella y la abre en el navegador de quien la visita; nada se sube a ningún servidor. Quien lo prefiera puede seguir abriendo el CSV de Dataverse.
+Esta web se publica con la base ya construida a partir de ese CSV (datos/, 3 partes, sha256 3a0d8b2dea42e8836a955d6b8fe33bfd30b4ee6ed60bad76d87c17a3dde5df15): la página la descarga, comprueba su huella y la abre en el navegador de quien la visita; nada se sube a ningún servidor. Quien lo prefiera puede seguir abriendo el CSV de Dataverse.
