@@ -11,7 +11,7 @@
  *   - activate borra las cachés y las copias de otras versiones.
  */
 'use strict';
-const VERSION = '10965f898053358327bf8d75ff1b645e9795f2a6293ecc4b271f0947a027a598';   // sha256 de index.html
+const VERSION = '336ae14a79df2d21a49071907fbd3f446db63884d1227e54d10b7b2e4dee8917';   // sha256 de index.html
 const BUILD_ID = '1857031ae8c04b3d';
 const CACHE = '2rep-web-' + VERSION.slice(0, 16);
 const IDB = '2rep-web-sw';
