@@ -13216,7 +13216,30 @@ function cooEjesAjustar(box) {
 
 
 
+
+
+
+
+let COO_RO = null;
+function cooEjesVigilar(box) {
+  if (COO_RO) { COO_RO.disconnect(); COO_RO = null; }
+  if (!window.ResizeObserver || !box.querySelector('.coo-eje')) return;
+  let ancho = box.clientWidth;
+
+
+
+  COO_RO = new ResizeObserver(() => {
+    if (!box.isConnected || box.clientWidth === ancho) return;
+    ancho = box.clientWidth;
+    cooEjesAjustar(box);
+  });
+  COO_RO.observe(box);
+}
+
 function cooEjeFicha(eje, ps) {
+
+
+  if (eje.querySelector('.coo-tip')) return;
   const tip = document.createElement('div');
   tip.className = 'coo-tip';
   tip.hidden = true;
@@ -13420,6 +13443,7 @@ function cooRender() {
     ${fuentePieHTML('panel-fuente')}
   </div>`;
   cooEjesAjustar(box);
+  cooEjesVigilar(box);
   sc.scrollTop = top;
 }
 
